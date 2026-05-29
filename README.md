@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Welcome to your Expo app 👋
 
 This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
@@ -7,7 +8,134 @@ This is an [Expo](https://expo.dev) project created with [`create-expo-app`](htt
 1. Install dependencies
 
    ```bash
-   npm install
+   npm install# Solace
+
+A personal growth, productivity, and wellness companion built with React Native and Expo.
+
+## Overview
+
+Solace is designed to help users build consistency, reflect intentionally, and maintain focus through a calm and aesthetic experience.
+
+The app combines productivity tools with mindfulness and self-reflection to encourage long-term personal growth.
+
+---
+
+## Features
+
+### Weekly Intentions
+
+* Set meaningful weekly goals
+* Edit and update intentions anytime
+* Persistent storage using AsyncStorage
+
+### Daily Planner
+
+* Create daily tasks
+* Mark tasks as completed
+* Automatic carry-forward of unfinished tasks
+* Unfinished Threads section for backlog visibility
+
+### Focus Sessions
+
+* Start and stop focus timers
+* Track total focus minutes
+* Daily focus analytics
+* Session history and productivity tracking
+
+### Reflection Journal
+
+* Guided journaling experience
+* Dynamic reflection prompts
+* Mood tracking
+* Journal history preservation
+
+### Calendar Memories
+
+* View previous reflections and progress
+* Mood and productivity history
+* Dedicated memory screens for reviewing past entries
+
+### Notifications
+
+* Daily journal reminders
+* Smart reminder system
+* Direct navigation to journal screen from notifications
+
+### Personalization
+
+* Custom backgrounds
+* Sound effects
+* Calm and minimal user experience
+
+---
+
+## Tech Stack
+
+* React Native
+* Expo
+* Expo Router
+* TypeScript
+* AsyncStorage
+* Expo Notifications
+* Expo AV
+
+---
+
+## Screens
+
+* Home
+* Planner
+* Focus
+* Journal
+* Calendar
+* Profile
+
+---
+
+## Roadmap
+
+### V2
+
+* Weekly Intentions
+* Unfinished Threads
+* Focus Analytics
+* Journal Memory Screens
+* Notification Improvements
+* Sound System
+
+### V3
+
+* Enhanced Analytics
+* Mood Trends
+* Weekly Reviews
+* Rich Journal Themes
+* Additional Personalization
+
+---
+
+## Installation
+
+```bash
+npm install
+npx expo start
+```
+
+---
+
+## Author
+
+Kanakala Hari Chandan
+
+B.Tech Electronics and Communication Engineering
+
+NIT Andhra Pradesh
+
+---
+
+## Version
+
+Current Release: V2.0.0
+
    ```
 
 2. Start the app
@@ -48,3 +176,7 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+=======
+# Solace
+A personal growth, productivity, and wellness companion
+>>>>>>> a2b4b8503bdde7f324dea199f7cf371ca857e3e6
