@@ -1,23 +1,18 @@
 import { useEffect, useRef, useState } from "react";
-
-import { useStreakState } from "../streakStore";
-const [
-  completedSessions,
-  setCompletedSessions,
-] = useState(0);
 import {
-  useFocusState,
   completeSession,
   setSessionStartDate,
+  useFocusState,
 } from "../focusStore";
+import { useStreakState } from "../streakStore";
 
 import {
-  View,
-  Text,
-  TouchableOpacity,
+  Dimensions,
   ImageBackground,
   ScrollView,
-  Dimensions,
+  Text,
+  TouchableOpacity,
+  View,
 } from "react-native";
 
 import { LinearGradient } from "expo-linear-gradient";
@@ -33,6 +28,11 @@ import {
   playButtonSound,
 } from "../soundHelper";
 export default function FocusScreen() {
+const [
+  completedSessions,
+  setCompletedSessions,
+] = useState(0);
+
   const [seconds, setSeconds] =
     useState(1500);
 
@@ -64,6 +64,11 @@ const weeklyFocusData =
   const soundRef =
     useRef<Audio.Sound | null>(null);
 
+  useEffect(() => {
+  return () => {
+    stopRain();
+  };
+}, []);
   /* TIMER */
 
   useEffect(() => {
@@ -95,7 +100,7 @@ const weeklyFocusData =
 
     return () =>
       clearInterval(interval);
-  }, [isRunning, seconds]);
+  }, [isRunning, seconds, sessionCompleted]);
 
   /* FORMAT */
 
@@ -115,6 +120,9 @@ const weeklyFocusData =
   /* PLAY RAIN */
 
   async function playRain() {
+    if (soundRef.current) {
+  return;
+}
     const { sound } =
       await Audio.Sound.createAsync(
         require("../../assets/sounds/rain.mp3"),
@@ -396,7 +404,7 @@ await playRain();
               onPress={async () => {
   await playButtonSound();
 
-  handleReset();
+  await handleReset();
 }}
               activeOpacity={0.85}
               style={{

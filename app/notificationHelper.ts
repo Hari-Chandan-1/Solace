@@ -4,7 +4,14 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const JOURNAL_NOTIFICATION_IDS =
   "JOURNAL_NOTIFICATION_IDS";
-
+const JOURNAL_COMPLETED =
+  "JOURNAL_COMPLETED";
+  export async function markJournalCompleted() {
+  await AsyncStorage.setItem(
+    JOURNAL_COMPLETED,
+    "true"
+  );
+}
 export async function setupNotifications() {
   await Notifications.requestPermissionsAsync();
 
@@ -27,7 +34,13 @@ export async function setupNotifications() {
 
 export async function scheduleJournalNotifications() {
   /* CLEAR OLD JOURNAL IDS */
+  const completed =
+  await AsyncStorage.getItem(
+    JOURNAL_COMPLETED
+  );
 
+if (completed === "true")
+  return;
   const savedIds =
     await AsyncStorage.getItem(
       JOURNAL_NOTIFICATION_IDS

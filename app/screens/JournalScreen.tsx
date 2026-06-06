@@ -1,22 +1,21 @@
+import { BlurView } from "expo-blur";
 import { useState } from "react";
 import {
-  cancelJournalNotifications,
-} from "../notificationHelper";
-import {
-  View,
-  Text,
+  ImageBackground,
   ScrollView,
+  Text,
   TextInput,
   TouchableOpacity,
-  ImageBackground,
+  View,
 } from "react-native";
-
-import { BlurView } from "expo-blur";
+import {
+  cancelJournalNotifications,
+  markJournalCompleted,
+} from "../notificationHelper";
 
 import {
   saveEntry,
-  useJournalState,
-  getTodayEntry,
+  useJournalState
 } from "../journalStore";
 
 import {
@@ -88,14 +87,24 @@ function getDailyQuestions() {
 }
 
 export default function JournalScreen() {
-  const journal = useJournalState();
+const journal =
+  useJournalState();
 
-  const todayEntry = getTodayEntry();
+const today =
+  new Date()
+    .toISOString()
+    .split("T")[0];
 
+const todayEntry =
+  journal[today];
+  const alreadyCompleted =
+  !!todayEntry;
   const questions =
-  todayEntry?.questions ||
-  getDailyQuestions();
-
+  Array.isArray(
+    todayEntry?.questions
+  )
+    ? todayEntry.questions
+    : getDailyQuestions();
   const hour = new Date().getHours();
 
   const minute =
@@ -107,7 +116,7 @@ export default function JournalScreen() {
 
   const [answers, setAnswers] =
     useState<any>(
-      todayEntry?.answers || {}
+      todayEntry?.answers ?? {}
     );
 
   const [submitted, setSubmitted] =
@@ -121,6 +130,7 @@ export default function JournalScreen() {
 
     setSubmitted(true);
     await cancelJournalNotifications();
+    await markJournalCompleted();
     const today =
       new Date()
         .toISOString()
@@ -251,7 +261,7 @@ Nothing needs to rush now.
 
   /* SUCCESS SCREEN */
 
-  if (submitted) {
+  if (submitted || alreadyCompleted) { 
     return (
       <ImageBackground
         source={require("../../assets/backgrounds/JournallingBackground.jpg")}
@@ -414,7 +424,6 @@ Rest peacefully tonight.
           </Text>
 
           {/* QUESTIONS */}
-
           {questions.map(
             (question: string, index: number) => (
               <BlurView
@@ -518,7 +527,7 @@ Rest peacefully tonight.
             onPress={async () => {
   await playButtonSound();
 
-  handleSubmit();
+  await handleSubmit();
 }}
             activeOpacity={0.85}
             style={{

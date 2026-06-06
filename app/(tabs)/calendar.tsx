@@ -1,11 +1,11 @@
 import { router } from "expo-router";
 import {
-  View,
-  Text,
-  ScrollView,
   ImageBackground,
+  ScrollView,
   StatusBar,
+  Text,
   TouchableOpacity,
+  View,
 } from "react-native";
 
 import { useState } from "react";
@@ -230,31 +230,25 @@ export default function CalendarScreen() {
                 </Text>
 
                 <Text
-                  style={{
-                    color:
-                      "rgba(255,255,255,0.7)",
+  style={{
+    color:
+      "rgba(255,255,255,0.7)",
 
-                    lineHeight: 30,
+    lineHeight: 30,
 
-                    fontSize: 17,
-                  }}
-                >
-                  Mood:{" "}
-                  {selectedData.mood ||
-                    "-"}
+    fontSize: 17,
+  }}
+>
+  Mood: {selectedData?.mood ?? "-"}
 
-                  {"\n\n"}
+  {"\n\n"}
 
-                  Progress:{" "}
-                  {selectedData.progress ||
-                    0}
-                  %
+  Progress: {selectedData?.progress ?? 0}%
 
-                  {"\n\n"}
+  {"\n\n"}
 
-                  Journal:
-                  {"\n"}
-
+  Journal:
+</Text>
                   <TouchableOpacity
   activeOpacity={0.85}
   onPress={() => {
@@ -313,7 +307,6 @@ export default function CalendarScreen() {
     </Text>
   </LinearGradient>
 </TouchableOpacity>
-                </Text>
               </View>
             </BlurView>
           </ScrollView>
